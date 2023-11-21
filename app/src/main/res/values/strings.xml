@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">quizz_project</string>
+    <string name="intro">
+        <![CDATA[
+        <p>
+            Chào mừng bạn đến với trò chơi GoQuiz.
+        </p>
+        <p>
+            Trong trò chơi này, bạn trả lời các câu hỏi theo các chủ đề: Lịch sử, địa lí, khoa học, nghệ thuật,…
+        </p>
+        <p>
+             Bạn có thể trả lời các câu hỏi ở 2 cấp độ là dễ và khó. Mỗi câu hỏi sau khi bạn chọn đáp án sẽ hiện thông báo Đúng/Sai cho bạn, bạn có thể xem lại đáp án sau khi hoàn thành.
+        </p>
+        <p>
+            Thành tích của bạn giữa các lần chơi sẽ được lưu lại.
+        </p>
+        ]]>
+    </string>
+    <string name="geographySub">
+        Các câu hỏi về các vùng đất, địa hình, con người, khí hậu, dân cư và các hiện tượng trên trái đất
+    </string>
+    <string name="historySub">
+        Các câu hỏi về sự kiện liên quan con người
+    </string>
+    <string name="scienceSub">
+        Các câu hỏi về những định luật, cấu trúc và cách vận hành thế giới tự nhiên
+    </string>
+    <string name="artSub">
+        Các câu hỏi về kiến trúc, nghệ thuật tiêu biểu qua từng thời kì, nét đặc trưng về từng thời đại.
+    </string>
+</resources>
