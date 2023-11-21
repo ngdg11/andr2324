@@ -17,10 +17,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//       Lấy dữ liệu từ string để hiển thị
         TextView intro = findViewById(R.id.introduction);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intro.setText(Html.fromHtml(getString(R.string.intro), Html.FROM_HTML_MODE_COMPACT));
         }
+//      Vào frame2
         Button start = findViewById(R.id.startBtn);
         start.setOnClickListener(view ->{
             Intent action = new Intent(this, Frame2.class);

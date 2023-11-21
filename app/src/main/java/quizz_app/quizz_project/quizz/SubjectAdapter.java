@@ -9,26 +9,27 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class SubjectAdapter extends BaseAdapter {
+//    Khai báo listSubject
     private ArrayList<Subject> listSubject;
     public SubjectAdapter(ArrayList<Subject> listSubject ){
         this.listSubject = listSubject;
     }
-
+//  Lấy số lượng subject
     @Override
     public int getCount() {
         return listSubject.size();
     }
-
+//  Lấy vij trí subject
     @Override
     public Object getItem(int position) {
         return listSubject.get(position);
     }
-
+//  Lấy id của subject
     @Override
     public long getItemId(int position) {
         return listSubject.get(position).getSubId();
     }
-
+    //  render subject, subject description và img
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View viewItem;

@@ -19,6 +19,7 @@ public class Frame2QuizDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_quiz);
+//       Thêm câu hỏi cho chủ đề
         listQuizDisplay = new ArrayList<>();
         listQuizDisplay.add(new QuizDisplay(0,"Địa lí",1,"hello"));
         listQuizDisplay.add(new QuizDisplay(0,"Địa lí",2,"hello"));
@@ -26,11 +27,11 @@ public class Frame2QuizDisplay extends AppCompatActivity {
         listQuizDisplay.add(new QuizDisplay(0,"Địa lí",4,"hello"));
         listQuizDisplay.add(new QuizDisplay(0,"Địa lí",5,"hello"));
         listQuizDisplay.add(new QuizDisplay(0,"Địa lí",6,"hello"));
-//        truyen cho adapter
+//        truyền cho adapter
         QuizDisplayAdapter adapter = new QuizDisplayAdapter((listQuizDisplay));
         ListView listItemSubject = findViewById(R.id.listItemSubject);
         listItemSubject.setAdapter(adapter);
-//        Quay lai chon chu de
+//        Quay lại chọn chủ đề
         Button chooseSubjectBtn = findViewById(R.id.chooseSubjectBtn);
         chooseSubjectBtn.setOnClickListener(view->{
             Intent back = new Intent(Frame2QuizDisplay.this, Frame2.class);

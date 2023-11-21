@@ -44,6 +44,7 @@ public class Frame2 extends AppCompatActivity {
                 level = "EASY";
             }
         });
+//      chọn chủ đề để chuyển sang frame3
         listItemSubject.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
