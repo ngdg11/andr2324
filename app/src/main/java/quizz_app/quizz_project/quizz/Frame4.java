@@ -11,12 +11,13 @@ public class Frame4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.frame4); // You need to create this layout
+        setContentView(R.layout.frame4);
 
-        Intent pass_finalScore = getIntent();
-        int finalScore = pass_finalScore.getIntExtra("FINAL_SCORE", 0);
+        Intent pass_number_of_corrected_answers = getIntent();
+        int correctAnswersCount = pass_number_of_corrected_answers.getIntExtra("CORRECT_ANSWERS_COUNT", 0);
 
-        TextView scoreTextView = findViewById(R.id.scoreTextView); // You need a TextView in your layout with this ID
-        scoreTextView.setText("Your Score: " + finalScore);
+        TextView correctAnswersTextView = findViewById(R.id.correctAnswersTextView); // Make sure you have a TextView with this ID in your layout
+        correctAnswersTextView.setText("Correct Answers: " + correctAnswersCount);
     }
 }
+

@@ -24,7 +24,9 @@ public class Frame3 extends AppCompatActivity {
     private int currentQuestionIndex = 0;
     private List<Question> questions;
 
-    private int score = 0; // Track the player's score
+    private int score = 0;
+    private int correctAnswersCount = 0;
+
     private String level;
 
     @Override
@@ -35,7 +37,6 @@ public class Frame3 extends AppCompatActivity {
         Intent pass_subject = getIntent();
         String subject = pass_subject.getStringExtra("SELECTED_SUBJECT");
 
-        // Assign directly to the class-level 'level' variable
         level = pass_subject.getStringExtra("SELECTED_LEVEL");
         if (level == null) {
             level = "EASY";
@@ -49,8 +50,11 @@ public class Frame3 extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkAnswer()) {
-                    updateScore();
+                if (checkAnswer()) { //đúng
+                    //updateScore();
+                    //currentQuestionIndex++;
+
+                    updateCorrectAnswersCount();
                     currentQuestionIndex++;
                     if (currentQuestionIndex < questions.size()) {
                         displayQuestion();
@@ -112,7 +116,7 @@ public class Frame3 extends AppCompatActivity {
             is.close();
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle exceptions
+            Log.e("QuizApp", "Ko load đc file");
         }
         return loadedQuestions;
     }
@@ -140,9 +144,6 @@ public class Frame3 extends AppCompatActivity {
         return baseName + levelSuffix + ".txt";
     }
 
-
-
-
     private boolean checkAnswer() {
         RadioGroup answersGroup = findViewById(R.id.answersGroup);
         int selectedId = answersGroup.getCheckedRadioButtonId();
@@ -160,10 +161,14 @@ public class Frame3 extends AppCompatActivity {
         }
     }
 
+    private void updateCorrectAnswersCount() {
+        correctAnswersCount++;
+    }
+
     private void goToScoreScreen() {
-        Intent intent = new Intent(Frame3.this, Frame4.class);
-        intent.putExtra("FINAL_SCORE", score);
-        startActivity(intent);
+        Intent pass_number_of_corrected_answers = new Intent(Frame3.this, Frame4.class);
+        pass_number_of_corrected_answers.putExtra("CORRECT_ANSWERS_COUNT", correctAnswersCount);
+        startActivity(pass_number_of_corrected_answers);
         finish(); // close
     }
 
