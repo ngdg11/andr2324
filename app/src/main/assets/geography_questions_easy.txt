@@ -1,0 +1,3 @@
+What is the capital of France?|Paris$London$Rome$Berlin|0
+Which country is known as the Land of the Rising Sun?|China$India$Japan$Brazil|2
+What is the capital of Vietnam?|Paris$Hanoi$Rome$Berlin|1

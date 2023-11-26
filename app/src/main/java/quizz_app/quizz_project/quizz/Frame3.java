@@ -6,12 +6,17 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,13 +29,18 @@ public class Frame3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.frame3);
 
-        Intent intent = getIntent();
-        String subject = intent.getStringExtra("SELECTED_SUBJECT");
-        // Initialize your questions list here based on the subject
-        initializeQuestions(subject);
+        Intent pass_subject = getIntent();
+        String subject = pass_subject.getStringExtra("SELECTED_SUBJECT");
+
+        // Handle the level: if it's not provided, default to "EASY"
+        String level = pass_subject.getStringExtra("SELECTED_LEVEL");
+        if (level == null) {
+            level = "EASY";
+        }
+
+        questions = loadQuestions(subject, level);
         displayQuestion();
 
-        displayQuestion();
 
         Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -50,36 +60,7 @@ public class Frame3 extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
     }
-
-    // gen questions
-    private void initializeQuestions(String subject) {
-        questions = new ArrayList<>();
-
-        if (subject.equals("Địa lý")) {
-            questions.add(new Question("What is the capital of France?",
-                    new String[]{"Paris", "London", "Rome", "Berlin"}, 0));
-            questions.add(new Question("What is the largest ocean on Earth?",
-                    new String[]{"Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"}, 3));
-            // Add more geography questions here
-        } else if (subject.equals("Lịch sử")) {
-            questions.add(new Question("Who was the first president of the United States?",
-                    new String[]{"George Washington", "Abraham Lincoln", "Thomas Jefferson", "John Adams"}, 0));
-            questions.add(new Question("In what year did World War II end?",
-                    new String[]{"1945", "1939", "1918", "1963"}, 0));
-            // Add more history questions here
-        }
-        // ... Add cases for other subjects
-    }
-
-
-
-
 
     private void displayQuestion() {
         if (currentQuestionIndex < questions.size()) {
@@ -89,6 +70,12 @@ public class Frame3 extends AppCompatActivity {
             RadioButton answer2 = findViewById(R.id.answer2);
             RadioButton answer3 = findViewById(R.id.answer3);
             RadioButton answer4 = findViewById(R.id.answer4);
+
+            // Debugging: Log the current question and answers
+            Log.d("QuizApp", "Current question: " + currentQuestion.getQuestionText());
+            for (String answer : currentQuestion.getAnswers()) {
+                Log.d("QuizApp", "Answer: " + answer);
+            }
 
             questionTextView.setText(currentQuestion.getQuestionText());
 
@@ -104,8 +91,58 @@ public class Frame3 extends AppCompatActivity {
             answersGroup.clearCheck();
         } else {
             // Handle the case when there are no more questions
+            // Debugging: Log when there are no more questions
+            Log.d("QuizApp", "No more questions available.");
         }
     }
+
+    private List<Question> loadQuestions(String subject, String level) {
+        List<Question> loadedQuestions = new ArrayList<>();
+        String fileName = getFileNameForSubject(subject, level);
+        Log.d("QuizApp", "Loading questions from file: " + fileName);
+
+        try {
+            InputStream is = getAssets().open(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+                String[] answers = parts[1].split("\\$");
+                int correctAnswer = Integer.parseInt(parts[2]);
+                loadedQuestions.add(new Question(parts[0], answers, correctAnswer));
+            }
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle exceptions
+        }
+        return loadedQuestions;
+    }
+
+
+    private String getFileNameForSubject(String subject, String level) {
+        String baseName;
+        switch (subject) {
+            case "Địa lý":
+                baseName = "geography_questions";
+                break;
+            case "Lịch sử":
+                baseName = "history_questions";
+                break;
+            case "Khoa học":
+                baseName = "science_questions";
+                break;
+            // ... other cases for different subjects
+            default:
+                baseName = ""; // Or handle unknown subjects appropriately
+                break;
+        }
+
+        String levelSuffix = level.equalsIgnoreCase("HARD") ? "_hard" : "_easy";
+        return baseName + levelSuffix + ".txt";
+    }
+
+
 
 
     private boolean checkAnswer() {
