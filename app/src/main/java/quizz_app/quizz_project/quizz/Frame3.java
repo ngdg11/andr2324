@@ -24,6 +24,9 @@ public class Frame3 extends AppCompatActivity {
     private int currentQuestionIndex = 0;
     private List<Question> questions;
 
+    private int score = 0; // Track the player's score
+    private String level;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +35,8 @@ public class Frame3 extends AppCompatActivity {
         Intent pass_subject = getIntent();
         String subject = pass_subject.getStringExtra("SELECTED_SUBJECT");
 
-        // Handle the level: if it's not provided, default to "EASY"
-        String level = pass_subject.getStringExtra("SELECTED_LEVEL");
+        // Assign directly to the class-level 'level' variable
+        level = pass_subject.getStringExtra("SELECTED_LEVEL");
         if (level == null) {
             level = "EASY";
         }
@@ -46,17 +49,16 @@ public class Frame3 extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkAnswer()) {
+                if (checkAnswer()) {
+                    updateScore();
                     currentQuestionIndex++;
-                    if(currentQuestionIndex < questions.size()) {
+                    if (currentQuestionIndex < questions.size()) {
                         displayQuestion();
                     } else {
-                        // Handle the case when all questions are answered
-                        // e.g., show a score summary or return to the subject list
+                        goToScoreScreen(); // hết câu hỏi
                     }
                 } else {
-                    // Handle incorrect answer
-                    // e.g., display a message or a prompt
+                    goToScoreScreen(); // trả lời sai
                 }
             }
         });
@@ -71,7 +73,6 @@ public class Frame3 extends AppCompatActivity {
             RadioButton answer3 = findViewById(R.id.answer3);
             RadioButton answer4 = findViewById(R.id.answer4);
 
-            // Debugging: Log the current question and answers
             Log.d("QuizApp", "Current question: " + currentQuestion.getQuestionText());
             for (String answer : currentQuestion.getAnswers()) {
                 Log.d("QuizApp", "Answer: " + answer);
@@ -79,19 +80,16 @@ public class Frame3 extends AppCompatActivity {
 
             questionTextView.setText(currentQuestion.getQuestionText());
 
-            // Assuming each question has exactly 4 answers
             String[] answers = currentQuestion.getAnswers();
             answer1.setText(answers[0]);
             answer2.setText(answers[1]);
             answer3.setText(answers[2]);
             answer4.setText(answers[3]);
 
-            // Reset the RadioGroup for new question
+            // Reset RadioGroup cho câu hỏi mới
             RadioGroup answersGroup = findViewById(R.id.answersGroup);
             answersGroup.clearCheck();
         } else {
-            // Handle the case when there are no more questions
-            // Debugging: Log when there are no more questions
             Log.d("QuizApp", "No more questions available.");
         }
     }
@@ -152,6 +150,21 @@ public class Frame3 extends AppCompatActivity {
         int answerIndex = answersGroup.indexOfChild(selectedRadioButton);
 
         return questions.get(currentQuestionIndex).getCorrectAnswerIndex() == answerIndex;
+    }
+
+    private void updateScore() {
+        if ("HARD".equalsIgnoreCase(level)) {
+            score += 2;
+        } else {
+            score += 1;
+        }
+    }
+
+    private void goToScoreScreen() {
+        Intent intent = new Intent(Frame3.this, Frame4.class);
+        intent.putExtra("FINAL_SCORE", score);
+        startActivity(intent);
+        finish(); // close
     }
 
 }
