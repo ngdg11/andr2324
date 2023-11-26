@@ -1,61 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="16dp">
 
+    <!-- Question TextView -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginVertical="10dp"
-        android:gravity="center"
-        android:text="ToTal Score:"
-        android:textSize="32sp" />
-    <RadioGroup
-        android:id="@+id/radio_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:orientation="vertical">
-        <RadioButton android:id="@+id/answer1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Việt Nam"/>
-        <RadioButton android:id="@+id/answer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đức"/>
-        <RadioButton android:id="@+id/answer3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lào"/>
-        <RadioButton android:id="@+id/answer4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Áo"/>
-
-    </RadioGroup>
-    
-
-
-    <Button
-        android:id="@+id/answerBtn"
+        android:id="@+id/questionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="3dp"
-        android:layout_marginTop="60dp"
-        android:text="Trả lời"
-        android:textSize="16sp"
-        />
+        android:text="Question"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"/>
 
+    <!-- RadioGroup for Answers -->
+    <RadioGroup
+        android:id="@+id/answersGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <!-- RadioButton for Answer 1 -->
+        <RadioButton
+            android:id="@+id/answer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answer 1"/>
+
+        <!-- RadioButton for Answer 2 -->
+        <RadioButton
+            android:id="@+id/answer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answer 2"/>
+
+        <!-- RadioButton for Answer 3 -->
+        <RadioButton
+            android:id="@+id/answer3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answer 3"/>
+
+        <!-- RadioButton for Answer 4 -->
+        <RadioButton
+            android:id="@+id/answer4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answer 4"/>
+    </RadioGroup>
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Answer"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"/>
 </LinearLayout>

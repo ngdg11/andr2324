@@ -35,6 +35,7 @@ public class Frame2 extends AppCompatActivity {
         SubjectAdapter adapter = new SubjectAdapter(listSubject);
         ListView listItemSubject = findViewById(R.id.listItemSubject);
         listItemSubject.setAdapter(adapter);
+
 //        vao muc cau hoi cua chu de da chon
         SwitchMaterial chooseLevel = findViewById(R.id.levelBtn);
         chooseLevel.setOnClickListener(view ->{
@@ -44,20 +45,16 @@ public class Frame2 extends AppCompatActivity {
                 level = "EASY";
             }
         });
-//      chọn chủ đề để chuyển sang frame3
+
+
         listItemSubject.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent frame3 = new Intent(Frame2.this, Frame3.class);
-                frame3.putExtra(LEVEL, level);
-                startActivity(frame3);
+                Intent intent = new Intent(Frame2.this, Frame3.class);
+                intent.putExtra("SELECTED_SUBJECT", listSubject.get(position).getNameSub());
+                startActivity(intent);
             }
         });
-//        xem danh sach cau hoi
-        Button allQuizBtn = findViewById(R.id.allQuizBtn);
-        allQuizBtn.setOnClickListener(view->{
-            Intent displayAllQuiz = new Intent(Frame2.this, Frame2QuizDisplay.class);
-            startActivity(displayAllQuiz);
-        });
+
     }
 }

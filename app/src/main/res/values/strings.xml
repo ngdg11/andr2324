@@ -28,4 +28,13 @@
     <string name="artSub">
         Các câu hỏi về kiến trúc, nghệ thuật tiêu biểu qua từng thời kì, nét đặc trưng về từng thời đại.
     </string>
+
+    <string name="geo_question_1">Hà Nội là thủ đô của quốc gia nào?</string>
+    <string-array name="geo_question_1_answers">
+        <item>Việt Nam</item>
+        <item>Thái Lan</item>
+        <item>Indonesia</item>
+        <item>Malaysia</item>
+    </string-array>
 </resources>
+
