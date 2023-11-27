@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingVertical="20dp"
+    android:paddingHorizontal="10dp"
+    android:orientation="horizontal"
+    android:background="#f7f2fa"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="20dp"
+        >
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="Vienna là đối thủ của nước nào?"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginVertical="20dp"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="25dp"
+            android:text="Khó"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_corner"
+            />
+        <TextView
+            android:id="@+id/answer1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
+            android:text="answer 1"
+            android:textSize="20dp"
+            android:background="@drawable/item"
+            />
+        <TextView
+            android:id="@+id/answer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
+            android:text="answer 1"
+            android:textSize="20dp"
+            android:background="@drawable/item"
+            />
+        <TextView
+            android:id="@+id/answer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
+            android:text="answer 1"
+            android:textSize="20dp"
+            android:background="@drawable/item"
+            />
+        <TextView
+            android:id="@+id/answer4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
+            android:text="answer 1"
+            android:textSize="20dp"
+            android:background="@drawable/item"
+            />
+        <TextView
+            android:id="@+id/correctAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginVertical="25dp"
+            android:text="Đáp án đúng: Áo"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

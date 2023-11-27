@@ -61,5 +61,13 @@ public class Frame2 extends AppCompatActivity {
             startActivity(pass_subject);
         });
 
+
+        //      xem toan bo cau hoi
+        Button allQuizBtn = findViewById(R.id.allQuizBtn);
+        allQuizBtn.setOnClickListener(view->{
+            Intent displayAllQuiz = new Intent(Frame2.this, Frame5.class);
+            startActivity(displayAllQuiz);
+        });
+
     }
 }

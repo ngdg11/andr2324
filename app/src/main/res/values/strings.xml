@@ -36,5 +36,11 @@
         <item>Indonesia</item>
         <item>Malaysia</item>
     </string-array>
+    <string-array name="simple_items">
+        <item name="item1">Item 1</item>
+        <item name="item2">Item 2</item>
+        <item name="item3">Item 3</item>
+        <item name="item4">Item 4</item>
+    </string-array>
 </resources>
 
