@@ -25,7 +25,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Frame2"></activity>
-        <activity android:name=".Frame2QuizDisplay"></activity>
         <activity android:name=".Frame3"></activity>
         <activity android:name=".Frame5"></activity>
 
