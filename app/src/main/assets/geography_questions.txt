@@ -1,0 +1,12 @@
+Thủ đô của Việt Nam là?|Hà Nội$London$Rome$Berlin|0|easy
+Quốc gia nào được mệnh danh là xứ sở hoa anh đào?|China$India$Japan$Brazil|2|easy
+Xứ sở kimchi là biệt danh của đất nước nào?|Japan$Laos$England$Korea|3|easy
+Quốc gia nào đông dân nhất hiện tại?|China$India$American$Brazil|1|easy
+Chùa Bái Đính nằm ở tỉnh nào ở Việt Nam?|Ninh Bình$Hà Nội$Hà Nam$Phú Thọ|2|easy
+Tòa nhà cao nhất Việt Nam là?|Landmark 81$Keangnam$Lotte Center$Bitexco Financial|0|easy
+Khoáng sản chủ yếu của vùng Đồng bằng sông Cửu Long là?|Apatit$Đá vôi và than bùn$Sắt$crôm|1|hard
+Loại khoáng sản đang có giá trị nhất ở biển Đông nước ta?|dầu mỏ, khí tự nhiên$muối$cát$titan|0|hard
+Cây công nghiệp là thế mạnh của vùng Trung du Bắc Bộ?|Cà phê$Cao su$Hồ tiêu$Chè|3|hard
+Đất nước triệu voi là nói đến quốc gia nào?|Vietnam$Thailand$Laos$Singapore|2|hard
+Đảo đông dân nhất Việt Nam là?|Trường Sa$Hoàng Sa$Lý Sơn$Cát Bà|2|hard
+Vũ công Samba là nói đến quốc gia nào?|Chile$|China$Argentina$Brazil|3|hard

@@ -1,0 +1,11 @@
+Đâu không phải là một ngôn ngữ lập trình?|Pascal$Hyperlink$C++$Python|1|easy
+Đơn vị nào dưới đây không được dùng để đo thể tích?|Lit$Gallon$Ounce$Yard|0|easy
+Phát minh nào dưới đây ra đời sớm nhất?|Máy tính$Điện thoại$Máy điện báo$Kính thiên văn|3|easy
+Mạng toàn cầu (World Wide Web) được ra đời ở đâu?|Mỹ$Anh$Thụy Sỹ$Pháp|2|easy
+Đâu là lợi ích của ánh sáng?|Giúp con người ngủ ngon hơn.$Giúp các loài động vật ngụy trang tốt hơn.$Giúp cây cối sinh trưởng và phát triển.$Giúp cây cối mọc rễ.|2|easy
+Ứng dụng của kính hiển vi điện tử nghiên cứu?|Cấu trúc siêu nhỏ$Gen$Vi rút$Cả 3 đáp án trên|3|hard
+Khoa học được chia làm mấy nhóm?|1$2$3$4|1|hard
+Sự ra đời của kính hiển vi điện tử nhờ?|Kiến thức vật lí$Quang học$Kiến thức khoa học về vật lí, quang học$Đáp án khác|2|hard
+Đâu là công nghệ mới?|AI và IOT$AI$IoT$2G|0|hard
+Công nghệ làm thay đổi điều gì?|Môi trường$Khí hậu$Không làm ảnh hưởng$Môi trường và khí hậu|3|hard
+

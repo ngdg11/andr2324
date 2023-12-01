@@ -1,1 +1,13 @@
-Who was the first president of the United States?|George Washington$Abraham Lincoln$Thomas Jefferson$John Adams|0
+Ấn Độ trở thành một quốc gia độc lập vào thời gian nào?|1947$1950$1951$1960|1|easy
+Tổng thư ký Liên Hợp Quốc từ năm 2017 là người nước nào?|Spain$Korean$Canada$Portugal|3|easy
+Người được bầu làm Tổng thống Nga năm 2000 là?|M.Goócbachốp$B.Enxin$V.Putin$Međvêdev|2|easy
+Trụ sở của tổ chức Liên Hợp quốc được đặt ở đâu?|NewYork$Washington$California$Boston|0|easy
+Khu vực Mĩ Latinh gồm bao nhiêu nước?|33$34$35$36|0|easy
+Nhà máy điện nguyên tử đầu tiên trên thế giới được xây dựng tại đâu?|Mỹ$Liên Xô$Trung Quốc$Pháp|1|easy
+Who was the first president of the United States?|George Washington$Abraham Lincoln$Thomas Jefferson$John Adams|0|hard
+Tổ chức nào sau đây không thuộc Liên hợp quốc?|UNICEF$WTO$NATO$UNESCO|2|hard
+Trước năm 1945, quốc gia duy nhất trên thế giới đi theo con đường xã hội chủ nghĩa là?|Liên Xô$Trung Quốc$Việt Nam$Cu ba|0|hard
+Chế độ xã hội chủ nghĩa sụp đổ ở Liên Xô vào thời gian nào?|1990$1991$1992$1993|1|hard
+Vào năm 1957, Liên Xô đã|Đưa con người bay vòng quanh Trái Đất$hế tạo thành công bom nguyên tử$ứng đầu thế giới về sản lượng công nghiệp$ phóng thành công vệ tinh nhân tạo|3|hard
+Chính quyền Xô viết do Lê-nin đứng đầu được thành lập vào năm nào?|1922$1920$1918$1917|3|hard
+
