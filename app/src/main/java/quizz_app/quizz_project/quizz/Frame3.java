@@ -3,9 +3,7 @@ package quizz_app.quizz_project.quizz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,53 +19,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Frame3 extends AppCompatActivity {
+    // Biến để theo dõi câu hỏi hiện tại
     private int currentQuestionIndex = 0;
-    private List<Question> questions;
+    private List<Question> questions; // Danh sách câu hỏi
 
+    // Biến để lưu điểm và số câu trả lời đúng
     private int score = 0;
     private int correctAnswersCount = 0;
 
-    private String level;
+    private String level; // Cấp độ câu hỏi (easy hoặc hard)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.frame3);
 
+        // Lấy thông tin môn học và level từ Intent trước đó
         Intent pass_subject = getIntent();
         String subject = pass_subject.getStringExtra("SELECTED_SUBJECT");
-
         level = pass_subject.getStringExtra("SELECTED_LEVEL");
+
         if (level == null) {
-            level = "EASY";
+            level = "EASY"; // Mặc định là easy
         }
 
+        // Tải danh sách câu hỏi dựa trên môn học và cấp độ
         questions = loadQuestions(subject, level);
+
+        // Hiển thị câu hỏi đầu tiên
         displayQuestion();
 
-
+        // Xử lý sự kiện khi người dùng bấm nút trả lời
         Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkAnswer()) { //đúng
-                    //updateScore();
-                    //currentQuestionIndex++;
+                if (checkAnswer()) { // Kiểm tra câu trả lời
+                    updateCorrectAnswersCount(); // Cập nhật số câu trả lời đúng
+                    currentQuestionIndex++; // Di chuyển đến câu hỏi tiếp theo
 
-                    updateCorrectAnswersCount();
-                    currentQuestionIndex++;
                     if (currentQuestionIndex < questions.size()) {
-                        displayQuestion();
+                        displayQuestion(); // Hiển thị câu hỏi tiếp theo
                     } else {
-                        goToScoreScreen(); // hết câu hỏi
+                        goToScoreScreen(); // Nếu hết câu hỏi, chuyển đến màn hình điểm frame 4
                     }
                 } else {
-                    goToScoreScreen(); // trả lời sai
+                    goToScoreScreen(); // Nếu trả lời sai, chuyển đến màn hình điểm frame 4
                 }
             }
         });
     }
 
+    // Hiển thị câu hỏi lên giao diện
     private void displayQuestion() {
         if (currentQuestionIndex < questions.size()) {
             Question currentQuestion = questions.get(currentQuestionIndex);
@@ -77,52 +80,69 @@ public class Frame3 extends AppCompatActivity {
             RadioButton answer3 = findViewById(R.id.answer3);
             RadioButton answer4 = findViewById(R.id.answer4);
 
-            Log.d("QuizApp", "Current question: " + currentQuestion.getQuestionText());
-            for (String answer : currentQuestion.getAnswers()) {
-                Log.d("QuizApp", "Answer: " + answer);
-            }
+            Log.d("QuizApp", "Câu hỏi hiện tại: " + currentQuestion.getQuestionText());
 
+            // Hiển thị câu hỏi và các câu trả lời
             questionTextView.setText(currentQuestion.getQuestionText());
-
             String[] answers = currentQuestion.getAnswers();
             answer1.setText(answers[0]);
             answer2.setText(answers[1]);
             answer3.setText(answers[2]);
             answer4.setText(answers[3]);
 
-            // Reset RadioGroup cho câu hỏi mới
+            // Đặt lại RadioGroup cho câu hỏi mới
             RadioGroup answersGroup = findViewById(R.id.answersGroup);
             answersGroup.clearCheck();
         } else {
-            Log.d("QuizApp", "No more questions available.");
+            Log.d("QuizApp", "Không còn câu hỏi.");
         }
     }
 
+    // Tải danh sách câu hỏi từ file
     private List<Question> loadQuestions(String subject, String level) {
         List<Question> loadedQuestions = new ArrayList<>();
-        String fileName = getFileNameForSubject(subject, level);
-        Log.d("QuizApp", "Loading questions from file: " + fileName);
+        String fileName = getFileNameForSubject(subject);
+
+        Log.d("QuizApp", "Đang tải câu hỏi từ tệp: " + fileName);
 
         try {
+            // Mở tệp từ thư mục assets
             InputStream is = getAssets().open(fileName);
+            // Đọc tệp văn bản dùng InputStreamReader và BufferedReader
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
+
+            // Đọc từng dòng trong tệp văn bản để tải câu hỏi
             while ((line = reader.readLine()) != null) {
+                // Phân tách dòng thành các phần, phân chia bằng ký tự "|"
                 String[] parts = line.split("\\|");
+
+                // Phân tách phần câu trả lời thành mảng, phân chia bằng ký tự "$"
                 String[] answers = parts[1].split("\\$");
+
+                // Chuyển đổi phần đại diện cho câu trả lời đúng thành kiểu số nguyên
                 int correctAnswer = Integer.parseInt(parts[2]);
-                loadedQuestions.add(new Question(parts[0], answers, correctAnswer));
+
+                // Lấy level của câu hỏi từ phần cuối cùng của dòng
+                String questionLevel = parts[3];
+
+                // check level
+                if (level.equalsIgnoreCase(questionLevel)) {
+                    // Nếu phù hợp, thêm câu hỏi vào danh sách
+                    loadedQuestions.add(new Question(parts[0], answers, correctAnswer));
+                }
             }
+
             is.close();
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("QuizApp", "Ko load đc file");
+            Log.e("QuizApp", "Không tải được tệp.");
         }
         return loadedQuestions;
     }
 
-
-    private String getFileNameForSubject(String subject, String level) {
+    // Xây dựng tên tệp dựa trên môn học và cấp độ
+    private String getFileNameForSubject(String subject) {
         String baseName;
         switch (subject) {
             case "Địa lý":
@@ -134,16 +154,17 @@ public class Frame3 extends AppCompatActivity {
             case "Khoa học":
                 baseName = "science_questions";
                 break;
-            // ... other cases for different subjects
+            // ... Thêm các trường hợp cho các môn học khác
             default:
-                baseName = ""; // Or handle unknown subjects appropriately
+                baseName = "";
                 break;
         }
 
-        String levelSuffix = level.equalsIgnoreCase("HARD") ? "_hard" : "_easy";
-        return baseName + levelSuffix + ".txt";
+        // Sử dụng tệp chung cho cả easy và hard
+        return baseName + ".txt";
     }
 
+    // Kiểm tra câu trả lời
     private boolean checkAnswer() {
         RadioGroup answersGroup = findViewById(R.id.answersGroup);
         int selectedId = answersGroup.getCheckedRadioButtonId();
@@ -153,23 +174,25 @@ public class Frame3 extends AppCompatActivity {
         return questions.get(currentQuestionIndex).getCorrectAnswerIndex() == answerIndex;
     }
 
+    // Cập nhật điểm
     private void updateScore() {
-        if ("HARD".equalsIgnoreCase(level)) {
+        if ("hard".equalsIgnoreCase(level)) {
             score += 2;
         } else {
             score += 1;
         }
     }
 
+    // Cập nhật số câu trả lời đúng
     private void updateCorrectAnswersCount() {
         correctAnswersCount++;
     }
 
+    // Chuyển đến màn hình điểm
     private void goToScoreScreen() {
         Intent pass_number_of_corrected_answers = new Intent(Frame3.this, Frame4.class);
         pass_number_of_corrected_answers.putExtra("CORRECT_ANSWERS_COUNT", correctAnswersCount);
         startActivity(pass_number_of_corrected_answers);
-        finish(); // close
+        finish(); // Đóng màn hình
     }
-
 }
