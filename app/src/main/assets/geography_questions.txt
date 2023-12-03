@@ -9,4 +9,3 @@ Loại khoáng sản đang có giá trị nhất ở biển Đông nước ta?|d
 Cây công nghiệp là thế mạnh của vùng Trung du Bắc Bộ?|Cà phê$Cao su$Hồ tiêu$Chè|3|hard
 Đất nước triệu voi là nói đến quốc gia nào?|Vietnam$Thailand$Laos$Singapore|2|hard
 Đảo đông dân nhất Việt Nam là?|Trường Sa$Hoàng Sa$Lý Sơn$Cát Bà|2|hard
-Vũ công Samba là nói đến quốc gia nào?|Chile$|China$Argentina$Brazil|3|hard
