@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:gravity="center"
@@ -24,16 +25,17 @@
             android:layout_marginRight="10dp"
             android:text="Chủ đề"
             android:textSize="28sp" />
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textField"
+            android:id="@+id/subjectSuggest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:hint="From"
             app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <AutoCompleteTextView
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/autoCompleteSubject"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="10dp"
                 android:layout_width="match_parent"
@@ -47,25 +49,11 @@
 
 
     <ListView
-        android:id="@+id/listItemSubject"
+        android:id="@+id/listItemQuestion"
         android:layout_width="match_parent"
         android:layout_height="508dp"
         android:paddingVertical="10dp">
 
     </ListView>
-
-
-    <Button
-        android:id="@+id/chooseSubjectBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="3dp"
-        android:text="Chọn chủ đề"
-        android:textSize="16sp"
-        />
-
 
 </LinearLayout>
