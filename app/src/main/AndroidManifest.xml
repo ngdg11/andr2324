@@ -27,6 +27,8 @@
         <activity android:name=".Frame2"></activity>
         <activity android:name=".Frame3"></activity>
         <activity android:name=".Frame5"></activity>
+        <activity android:name=".Frame6"></activity>
+
 
     </application>
 
