@@ -13,23 +13,19 @@ public class Frame4 extends AppCompatActivity {
     private Button finishBtn;
     private Button playAgainBtn;
     private Button shareBtn;
-//    private String selectedSubject;
-//    private String level;
+
+    private String selectedSubject;
+    private String selectedLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Frame2 frame2 = new Frame2(); // Tạo một đối tượng Frame2
-//        String subject = frame2.selectedSubject; // Truy cập selectedSubject
-//        String level = frame2.level; // Truy cập level
         setContentView(R.layout.frame4);
         Intent pass_number_of_corrected_answers = getIntent();
         int correctAnswersCount = pass_number_of_corrected_answers.getIntExtra("CORRECT_ANSWERS_COUNT", 0);
 
-        TextView correctAnswersTextView = findViewById(R.id.correctAnswersTextView); // Make sure you have a TextView with this ID in your layout
+        TextView correctAnswersTextView = findViewById(R.id.correctAnswersTextView);
         correctAnswersTextView.setText(String.valueOf(correctAnswersCount) );
-//        selectedSubject = pass_number_of_corrected_answers.getStringExtra("Selected subject");
-//        level = pass_number_of_corrected_answers.getStringExtra("Selected level");
 
         //Button Finish
         finishBtn = findViewById(R.id.btnFinish);
@@ -40,20 +36,25 @@ public class Frame4 extends AppCompatActivity {
                 startActivity(intent_finish);
             }
         });
-        //Button playAgain( on fix)
+
+
+        //pass lại sang frame 3
+        Intent pass_subject_level = getIntent();
+        selectedSubject = pass_subject_level.getStringExtra("SELECTED_SUBJECT");
+        selectedLevel = pass_subject_level.getStringExtra("SELECTED_LEVEL");
+        //Button playAgain
         playAgainBtn = findViewById(R.id.btnAgain);
-//        playAgainBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v1) {
-//                Log.d("Frame4", "Selected Subject: " + selectedSubject);
-//                Log.d("Frame4", "Selected Level: " + level);
-//                Intent intent_play_again = new Intent(Frame4.this, Frame3.class);
-//                intent_play_again.putExtra("Select Subject",selectedSubject);
-//                intent_play_again.putExtra("Select level",level);
-//                startActivity(intent_play_again);
-//                Log.e("QuizApp", "Not back");
-//            }
-//        });
+        playAgainBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent playAgainIntent = new Intent(Frame4.this, Frame3.class);
+                playAgainIntent.putExtra("SELECTED_SUBJECT", selectedSubject);
+                playAgainIntent.putExtra("SELECTED_LEVEL", selectedLevel);
+                startActivity(playAgainIntent);
+                finish();
+            }
+        });
+
         //Button share
         shareBtn = findViewById(R.id.btnShare);
         shareBtn.setOnClickListener(new View.OnClickListener() {
