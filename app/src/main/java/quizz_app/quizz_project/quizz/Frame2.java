@@ -18,8 +18,6 @@ import java.util.ArrayList;
 
 public class Frame2 extends AppCompatActivity {
     ArrayList<Subject> listSubject;
-    //private String level;
-    //private String LEVEL = "LEVEL";
 
     private String selectedSubject; // Add this line to store the selected subject
     private String level = "EASY"; // Default level to "EASY
@@ -32,7 +30,7 @@ public class Frame2 extends AppCompatActivity {
         listSubject.add(new Subject(0, "Địa lý", "Các câu hỏi về các vùng đất, địa hình, dân cư, khí hậu và hiện tương trên Trái Đất",  R.drawable.img_geography));
         listSubject.add(new Subject(1, "Lịch sử", "Các câu hỏi về sự kiện lịch sử liên quan dến con người",  R.drawable.img_history));
         listSubject.add(new Subject(2, "Khoa học", "Các câu hỏi về những định luật, cấu trúc và vận hành của thế giới tự nhiên",  R.drawable.img_science));
-        listSubject.add(new Subject(3, "Địa lý", "Các câu hỏi về kiến trúc, nghệ thuật, dấu mốc tiêu biểu các thời  kì văn hóa",  R.drawable.art));
+        listSubject.add(new Subject(3, "Toán học", "Các câu hỏi về tính toán",  R.drawable.art));
 
 
         //truyen cho  adapter
