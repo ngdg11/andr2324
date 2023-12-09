@@ -28,6 +28,7 @@ public class Frame3 extends AppCompatActivity {
     private int correctAnswersCount = 0;
 
     private String level; // Cấp độ câu hỏi (easy hoặc hard)
+    private String subject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class Frame3 extends AppCompatActivity {
 
         // Lấy thông tin môn học và level từ Intent trước đó
         Intent pass_subject = getIntent();
-        String subject = pass_subject.getStringExtra("SELECTED_SUBJECT");
+        subject = pass_subject.getStringExtra("SELECTED_SUBJECT");
         level = pass_subject.getStringExtra("SELECTED_LEVEL");
 
         if (level == null) {
@@ -49,7 +50,7 @@ public class Frame3 extends AppCompatActivity {
         // Hiển thị câu hỏi đầu tiên
         displayQuestion();
 
-        // Xử lý sự kiện khi người dùng bấm nút trả lời
+        // Xử lý khi người dùng bấm nút trả lời
         Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +121,7 @@ public class Frame3 extends AppCompatActivity {
                 // Phân tách phần câu trả lời thành mảng, phân chia bằng ký tự "$"
                 String[] answers = parts[1].split("\\$");
 
-                // Chuyển đổi phần đại diện cho câu trả lời đúng thành kiểu số nguyên
+                // Chuyển đổi phần correct cho câu trả lời đúng thành kiểu số nguyên
                 int correctAnswer = Integer.parseInt(parts[2]);
 
                 // Lấy level của câu hỏi từ phần cuối cùng của dòng
@@ -143,25 +144,25 @@ public class Frame3 extends AppCompatActivity {
 
     // Xây dựng tên tệp dựa trên môn học và cấp độ
     private String getFileNameForSubject(String subject) {
-        String baseName;
+        String subject_name;
         switch (subject) {
             case "Địa lý":
-                baseName = "geography_questions";
+                subject_name = "geography_questions";
                 break;
             case "Lịch sử":
-                baseName = "history_questions";
+                subject_name = "history_questions";
                 break;
             case "Khoa học":
-                baseName = "science_questions";
+                subject_name = "science_questions";
                 break;
-            // ... Thêm các trường hợp cho các môn học khác
+            case "Toán học":
+                subject_name = "math_questions";
+                break;
             default:
-                baseName = "";
+                subject_name = "";
                 break;
         }
-
-        // Sử dụng tệp chung cho cả easy và hard
-        return baseName + ".txt";
+        return subject_name + ".txt";
     }
 
     // Kiểm tra câu trả lời
@@ -188,10 +189,12 @@ public class Frame3 extends AppCompatActivity {
         correctAnswersCount++;
     }
 
-    // Chuyển đến màn hình điểm
+    // Chuyển đến màn hình điểm frame 4
     private void goToScoreScreen() {
         Intent pass_number_of_corrected_answers = new Intent(Frame3.this, Frame4.class);
         pass_number_of_corrected_answers.putExtra("CORRECT_ANSWERS_COUNT", correctAnswersCount);
+        pass_number_of_corrected_answers.putExtra("SELECTED_SUBJECT", subject);
+        pass_number_of_corrected_answers.putExtra("SELECTED_LEVEL", level);
         startActivity(pass_number_of_corrected_answers);
         finish(); // Đóng màn hình
     }
