@@ -1,0 +1,12 @@
+Dãy đều gồm các chất là?|Sách, tập vở, bút$Nhôm, đồng, lọ thủy tinh$Nhôm, đồng, kẽm$Kẽm, thước kẻ, tập vở|2|easy
+Vật thể nào sau đây là vật thể tự nhiên?|Ấm nhôm$Cây mía$Quần áo$Bình nhựa|1|easy
+Vật thể nào sau đây là vật thể nhân tạo?|Xe đạp$Quả chanh$Sông suối$Cây cỏ|0|easy
+Tính chất nào sau đây không phải là tính chất vật lí?|Mùi vị$Màu sắc$Nhiệt độ sôi$Tính cháy|3|easy
+Tính chất nào sau đây có thể quan sát trực tiếp bằng mắt?|Màu sắc$Tính dẫn điện$Tính dẫn nhiệt$Khối lượng riêng|0|easy
+Năm phân tử hiđro viết là?|5H$5H2$H2$5h2|1|easy
+Nguyên tử khối là khối lượng của một nguyên tử tính bằng đơn vị nào?|gam$kg$lit$đvC|3|hard
+Kí hiệu hóa học của nguyên tố sắt là?|S$Fe$fE$FE|1|hard
+Nguyên tố phổ biến nhất trong vỏ Trái đất là?|Cacbon$Oxi$Sắt$Silic|1|hard
+Có bao nhiêu nguyên tố hóa học?|110 nguyên tố$92 nguyên tố$100 nguyên tố$Trên 110 nguyên tố|3|hard
+Số......là số đặc trưng của một nguyên tố hóa học|Proton$Notron$Electron$Pi|0|hard
+Kí hiệu hóa học của nguyên tố magie là?|Mn$MG$Mg$mG|2|hard
