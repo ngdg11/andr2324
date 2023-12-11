@@ -25,12 +25,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="80dp"
                 android:layout_marginBottom="100dp"
                 android:gravity="center_horizontal"
                 android:text="GoQuiz"
                 android:textColor="@color/black"
-                android:textSize="40sp"
+                android:textSize="70sp"
                 android:textStyle="bold" />
 
             <TextView
