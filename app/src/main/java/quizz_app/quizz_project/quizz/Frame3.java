@@ -1,7 +1,9 @@
 package quizz_app.quizz_project.quizz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Context;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,11 +12,19 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +36,33 @@ public class Frame3 extends AppCompatActivity {
     // Biến để lưu điểm và số câu trả lời đúng
     private int score = 0;
     private int correctAnswersCount = 0;
-
+    private String fileScoreName = "score.txt";
     private String level; // Cấp độ câu hỏi (easy hoặc hard)
     private String subject;
+
+    //lưu điểm vào file
+    private void saveScoreTofile(String  saveScore) {
+        try {
+            // Open Stream to write file.
+            FileOutputStream out = this.openFileOutput(fileScoreName, MODE_PRIVATE);
+            // Ghi dữ liệu.
+//            if(correctAnswersCount == 0){
+//                saveScore = String.format("score|" + "0" +" pts");
+//
+//            }else{
+//                saveScore = String.format("score|" + saveScore +" pts");
+//            }
+            if(correctAnswersCount >= 0){
+                saveScore = String.format(("score|"+ saveScore +" pts"));
+            }
+            out.write(saveScore.getBytes());
+            out.close();
+            Log.d("score", saveScore);
+        } catch (Exception e) {
+            Log.d("error", String.valueOf(e));
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +92,7 @@ public class Frame3 extends AppCompatActivity {
                 if (checkAnswer()) { // Kiểm tra câu trả lời
                     updateCorrectAnswersCount(); // Cập nhật số câu trả lời đúng
                     currentQuestionIndex++; // Di chuyển đến câu hỏi tiếp theo
-
+                    updateScore();
                     if (currentQuestionIndex < questions.size()) {
                         displayQuestion(); // Hiển thị câu hỏi tiếp theo
                     } else {
@@ -158,6 +192,9 @@ public class Frame3 extends AppCompatActivity {
             case "Toán học":
                 subject_name = "math_questions";
                 break;
+            case "Hóa học":
+                subject_name = "chemistry_questions";
+                break;
             default:
                 subject_name = "";
                 break;
@@ -171,7 +208,6 @@ public class Frame3 extends AppCompatActivity {
         int selectedId = answersGroup.getCheckedRadioButtonId();
         RadioButton selectedRadioButton = findViewById(selectedId);
         int answerIndex = answersGroup.indexOfChild(selectedRadioButton);
-
         return questions.get(currentQuestionIndex).getCorrectAnswerIndex() == answerIndex;
     }
 
@@ -179,10 +215,20 @@ public class Frame3 extends AppCompatActivity {
     private void updateScore() {
         if ("hard".equalsIgnoreCase(level)) {
             score += 2;
-        } else {
+            Log.d("testScore",String.valueOf(score));
+
+        } else if("easy".equalsIgnoreCase(level)) {
             score += 1;
+            Log.d("testScore",String.valueOf(score));
+
+        }else{
+            score = 0;
         }
+        saveScoreTofile(String.valueOf(score));
+
     }
+
+
 
     // Cập nhật số câu trả lời đúng
     private void updateCorrectAnswersCount() {

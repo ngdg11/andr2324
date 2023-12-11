@@ -33,7 +33,7 @@ public class Frame5 extends AppCompatActivity {
     private ArrayList<QuestionDisplayFrame5> listQuestion;
 
     private String[] listAllFileName;
-    private String[] listSubjectName = {"history_questions", "geography_questions", "science_questions", "math_questions"};
+    private String[] listSubjectName = {"history_questions", "geography_questions", "science_questions", "math_questions","chemistry_questions"};
     ListView listItemQuestion;
 
     //    Xử lí tên file cho các chủ để
@@ -52,6 +52,9 @@ public class Frame5 extends AppCompatActivity {
                 break;
             case "Toán học":
                 subjectName = "math_questions";
+            case "Hóa học":
+                subjectName = "chemistry_questions";
+                break;
             default:
                 break;
         }
@@ -149,6 +152,13 @@ public class Frame5 extends AppCompatActivity {
                 listItemQuestion = findViewById(R.id.listItemQuestion);
                 listItemQuestion.setAdapter(adapter);
                 break;
+            case "Hóa học":
+                saveQuestion(handleFileName(subject));
+                //truyen cho  adapter
+                adapter = new QuestionDisplayAdapterFrame5(listQuestion);
+                listItemQuestion = findViewById(R.id.listItemQuestion);
+                listItemQuestion.setAdapter(adapter);
+                break;
             default:
                 break;
         }
@@ -163,7 +173,7 @@ public class Frame5 extends AppCompatActivity {
 
         TextInputLayout subjectSuggest = findViewById(R.id.subjectSuggest);
 //      Tạo danh sách và hiển thị theo gợi ý chủ đề
-        String[] list = {"Địa lý", "Lịch sử", "Khoa học", "Toán học"};
+        String[] list = {"Địa lý", "Lịch sử", "Khoa học", "Toán học","Hóa học"};
         AppCompatAutoCompleteTextView autoCompleteSubject = findViewById(R.id.autoCompleteSubject);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, list);
         autoCompleteSubject.setAdapter(adapter);

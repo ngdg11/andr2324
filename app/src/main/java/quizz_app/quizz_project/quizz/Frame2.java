@@ -6,14 +6,21 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Frame2 extends AppCompatActivity {
@@ -21,6 +28,9 @@ public class Frame2 extends AppCompatActivity {
 
     private String selectedSubject; // Add this line to store the selected subject
     private String level = "EASY"; // Default level to "EASY
+    private String fileScoreName = "score.txt";
+    String currentScore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +41,7 @@ public class Frame2 extends AppCompatActivity {
         listSubject.add(new Subject(1, "Lịch sử", "Các câu hỏi về sự kiện lịch sử liên quan dến con người",  R.drawable.img_history));
         listSubject.add(new Subject(2, "Khoa học", "Các câu hỏi về những định luật, cấu trúc và vận hành của thế giới tự nhiên",  R.drawable.img_science));
         listSubject.add(new Subject(3, "Toán học", "Các câu hỏi về tính toán",  R.drawable.art));
-
+        listSubject.add(new Subject(4, "Hóa học","Các câu hỏi về các chất hóa học",R.drawable.img_chem));
 
         //truyen cho  adapter
         SubjectAdapter adapter = new SubjectAdapter(listSubject);
@@ -59,6 +69,11 @@ public class Frame2 extends AppCompatActivity {
             startActivity(pass_subject);
         });
 
+        //hiển thị điểm
+        TextView score = findViewById(R.id.score);
+        readScore();
+        score.setText(currentScore);
+
 
         //      xem toan bo cau hoi
         Button allQuizBtn = findViewById(R.id.allQuizBtn);
@@ -67,5 +82,27 @@ public class Frame2 extends AppCompatActivity {
             startActivity(displayAllQuiz);
         });
 
+    }
+
+    // Đọc file Score
+    private void readScore() {
+        try {
+            // Open stream to read file.
+            FileInputStream in = this.openFileInput(fileScoreName);
+
+            BufferedReader br= new BufferedReader(new InputStreamReader(in));
+            String dataScore;
+            while ((dataScore = br.readLine()) != null) {
+                String[] score = dataScore.split("\\|");
+                String title = String.valueOf(score[0]);
+                currentScore = String.valueOf(score[1]);
+                Log.d("title",title);
+                Log.d("score",currentScore);
+
+            }
+
+        } catch (Exception e) {
+            Log.d("error",String.valueOf(e) );
+        }
     }
 }
