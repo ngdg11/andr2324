@@ -9,5 +9,5 @@ Who was the first president of the United States?|George Washington$Abraham Linc
 Tổ chức nào sau đây không thuộc Liên hợp quốc?|UNICEF$WTO$NATO$UNESCO|2|hard
 Trước năm 1945, quốc gia duy nhất trên thế giới đi theo con đường xã hội chủ nghĩa là?|Liên Xô$Trung Quốc$Việt Nam$Cu ba|0|hard
 Chế độ xã hội chủ nghĩa sụp đổ ở Liên Xô vào thời gian nào?|1990$1991$1992$1993|1|hard
-Vào năm 1957, Liên Xô đã|Đưa con người bay vòng quanh Trái Đất$hế tạo thành công bom nguyên tử$ứng đầu thế giới về sản lượng công nghiệp$ phóng thành công vệ tinh nhân tạo|3|hard
+Vào năm 1957, Liên Xô đã|Đưa con người bay vòng quanh Trái Đất$Chế tạo thành công bom nguyên tử$Đứng đầu thế giới về sản lượng công nghiệp$Phóng thành công vệ tinh nhân tạo|3|hard
 Chính quyền Xô viết do Lê-nin đứng đầu được thành lập vào năm nào?|1922$1920$1918$1917|3|hard
