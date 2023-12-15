@@ -82,8 +82,27 @@ public class Frame2 extends AppCompatActivity {
             startActivity(displayAllQuiz);
         });
 
+
+        // Restore state if available
+        if (savedInstanceState != null) {
+            selectedSubject = savedInstanceState.getString("SELECTED_SUBJECT");
+            level = savedInstanceState.getString("SELECTED_LEVEL");
+            currentScore = savedInstanceState.getString("CURRENT_SCORE");
+            // Update UI elements with restored data if needed
+            TextView score_save = findViewById(R.id.score);
+            score_save.setText(currentScore);
+        }
+
     }
 
+
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // save data khi xoay mh
+        outState.putString("SELECTED_SUBJECT", selectedSubject);
+        outState.putString("SELECTED_LEVEL", level);
+        outState.putString("CURRENT_SCORE", currentScore);
+    }
     // Đọc file Score
     private void readScore() {
         try {

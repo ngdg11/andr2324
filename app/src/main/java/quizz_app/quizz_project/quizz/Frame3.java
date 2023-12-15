@@ -39,19 +39,13 @@ public class Frame3 extends AppCompatActivity {
     private String fileScoreName = "score.txt";
     private String level; // Cấp độ câu hỏi (easy hoặc hard)
     private String subject;
+    private Button submitButton;
 
     //lưu điểm vào file
-    private void saveScoreTofile(String  saveScore) {
+    private void saveScoreTofile(String saveScore) {
         try {
-            // Open Stream to write file.
+            // lưu điểm vừa chơi vào file
             FileOutputStream out = this.openFileOutput(fileScoreName, MODE_PRIVATE);
-            // Ghi dữ liệu.
-//            if(correctAnswersCount == 0){
-//                saveScore = String.format("score|" + "0" +" pts");
-//
-//            }else{
-//                saveScore = String.format("score|" + saveScore +" pts");
-//            }
             if(correctAnswersCount >= 0){
                 saveScore = String.format(("score|"+ saveScore +" pts"));
             }
@@ -70,10 +64,18 @@ public class Frame3 extends AppCompatActivity {
         setContentView(R.layout.frame3);
 
         // Lấy thông tin môn học và level từ Intent trước đó
-        Intent pass_subject = getIntent();
-        subject = pass_subject.getStringExtra("SELECTED_SUBJECT");
-        level = pass_subject.getStringExtra("SELECTED_LEVEL");
-
+        if (savedInstanceState != null) {
+            currentQuestionIndex = savedInstanceState.getInt("CURRENT_QUESTION_INDEX");
+            score = savedInstanceState.getInt("SCORE");
+            correctAnswersCount = savedInstanceState.getInt("CORRECT_ANSWERS_COUNT");
+            level = savedInstanceState.getString("SELECTED_LEVEL");
+            subject = savedInstanceState.getString("SELECTED_SUBJECT");
+        } else {
+            // nếu state là null thì lấy data từ intent frame 2
+            Intent get_subject_and_level = getIntent();
+            subject = get_subject_and_level.getStringExtra("SELECTED_SUBJECT");
+            level = get_subject_and_level.getStringExtra("SELECTED_LEVEL");
+        }
         if (level == null) {
             level = "EASY"; // Mặc định là easy
         }
@@ -85,24 +87,42 @@ public class Frame3 extends AppCompatActivity {
         displayQuestion();
 
         // Xử lý khi người dùng bấm nút trả lời
-        Button submitButton = findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        submitButton = findViewById(R.id.submitButton);
+        submitButton.setEnabled(false); // gray out
+
+        // nếu bấm vào đáp án thì hiện nút trả lời
+        RadioGroup answersGroup = findViewById(R.id.answersGroup);
+        answersGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if (checkAnswer()) { // Kiểm tra câu trả lời
-                    updateCorrectAnswersCount(); // Cập nhật số câu trả lời đúng
-                    currentQuestionIndex++; // Di chuyển đến câu hỏi tiếp theo
-                    updateScore();
-                    if (currentQuestionIndex < questions.size()) {
-                        displayQuestion(); // Hiển thị câu hỏi tiếp theo
-                    } else {
-                        goToScoreScreen(); // Nếu hết câu hỏi, chuyển đến màn hình điểm frame 4
-                    }
-                } else {
-                    goToScoreScreen(); // Nếu trả lời sai, chuyển đến màn hình điểm frame 4
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // khi bấm vào answer thì bật nút trả lời
+                if (submitButton != null) {
+                    submitButton.setEnabled(true);
                 }
             }
         });
+
+        if (submitButton != null) {
+            submitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (checkAnswer()) { // Kiểm tra câu trả lời
+                        updateCorrectAnswersCount(); // Cập nhật số câu trả lời đúng
+                        currentQuestionIndex++; // Di chuyển đến câu hỏi tiếp theo
+                        updateScore();
+
+                        if (currentQuestionIndex < questions.size()) {
+                            displayQuestion(); // Hiển thị câu hỏi tiếp theo
+                            submitButton.setEnabled(false); // set lại nút trả lời về gray
+                        } else {
+                            goToScoreScreen(); // Nếu hết câu hỏi, chuyển đến màn hình điểm frame 4
+                        }
+                    } else {
+                        goToScoreScreen(); // Nếu trả lời sai, chuyển đến màn hình điểm frame 4
+                    }
+                }
+            });
+        }
     }
 
     // Hiển thị câu hỏi lên giao diện
@@ -176,7 +196,7 @@ public class Frame3 extends AppCompatActivity {
         return loadedQuestions;
     }
 
-    // Xây dựng tên tệp dựa trên môn học và cấp độ
+    // lấy tên file
     private String getFileNameForSubject(String subject) {
         String subject_name;
         switch (subject) {
@@ -244,4 +264,27 @@ public class Frame3 extends AppCompatActivity {
         startActivity(pass_number_of_corrected_answers);
         finish(); // Đóng màn hình
     }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore the state of the Submit Button and set it accordingly
+        if (submitButton != null) {
+            boolean isSubmitButtonEnabled = savedInstanceState.getBoolean("SUBMIT_BUTTON_ENABLED");
+            submitButton.setEnabled(isSubmitButtonEnabled);
+        }
+    }
+
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // save data de xoay screen
+        outState.putInt("CURRENT_QUESTION_INDEX", currentQuestionIndex);
+        outState.putInt("SCORE", score);
+        outState.putInt("CORRECT_ANSWERS_COUNT", correctAnswersCount);
+        outState.putString("SELECTED_LEVEL", level);
+        outState.putString("SELECTED_SUBJECT", subject);
+        if (submitButton != null) {
+            outState.putBoolean("SUBMIT_BUTTON_ENABLED", submitButton.isEnabled());
+        }
+    }
+
 }
