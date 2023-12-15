@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Frame4">
 
+
+    <!-- so cau tra loi dung (text) -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -16,10 +18,8 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/correctAnswersTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.623"
         tools:ignore="MissingConstraints,NotSibling" />
 
     <!--    <TextView-->
@@ -34,6 +34,8 @@
     <!--        app:layout_constraintEnd_toEndOf="parent"-->
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        tools:ignore="MissingConstraints" />-->
+
+    <!-- so cau tra loi dung-->
     <TextView
         android:id="@+id/correctAnswersTextView"
         android:layout_width="wrap_content"
@@ -46,6 +48,8 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
+
+    <!--replay -->
     <Button
         android:id="@+id/btnAgain"
         android:layout_width="wrap_content"
@@ -57,6 +61,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
 
+
+    <!--hoan thanh-->
     <Button
         android:id="@+id/btnFinish"
         android:layout_width="106dp"
@@ -67,10 +73,11 @@
         android:text="Hoàn thành"
         app:layout_constraintBottom_toTopOf="@+id/btnShare"
         app:layout_constraintEnd_toStartOf="@+id/btnAgain"
-        app:layout_constraintHorizontal_bias="0.324"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
+
+    <!-- share-->
     <Button
         android:id="@+id/btnShare"
         android:layout_width="wrap_content"
