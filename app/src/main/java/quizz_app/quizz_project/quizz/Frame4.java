@@ -10,10 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Frame4 extends AppCompatActivity {
-    private Button finishBtn;
-    private Button playAgainBtn;
     private Button shareBtn;
-
     private String selectedSubject;
     private String selectedLevel;
 
@@ -28,7 +25,7 @@ public class Frame4 extends AppCompatActivity {
         correctAnswersTextView.setText(String.valueOf(correctAnswersCount) );
 
         //Button Finish
-        finishBtn = findViewById(R.id.btnFinish);
+        Button finishBtn = findViewById(R.id.btnFinish);
         finishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,13 +34,12 @@ public class Frame4 extends AppCompatActivity {
             }
         });
 
-
         //pass lại sang frame 3
         Intent pass_subject_level = getIntent();
         selectedSubject = pass_subject_level.getStringExtra("SELECTED_SUBJECT");
         selectedLevel = pass_subject_level.getStringExtra("SELECTED_LEVEL");
         //Button playAgain
-        playAgainBtn = findViewById(R.id.btnAgain);
+        Button playAgainBtn = findViewById(R.id.btnAgain);
         playAgainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,8 +68,6 @@ public class Frame4 extends AppCompatActivity {
         });
 
     }
-
-
 
 }
 

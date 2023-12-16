@@ -37,10 +37,10 @@ public class Frame2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.frame2);
         listSubject = new ArrayList<>();
-        listSubject.add(new Subject(0, "Địa lý", "Các câu hỏi về các vùng đất, địa hình, dân cư, khí hậu và hiện tương trên Trái Đất",  R.drawable.img_geography));
-        listSubject.add(new Subject(1, "Lịch sử", "Các câu hỏi về sự kiện lịch sử liên quan dến con người",  R.drawable.img_history));
+        listSubject.add(new Subject(0, "Địa lý", "Các câu hỏi về các vùng đất, địa hình, dân cư, khí hậu và hiện tương trên Trái Đất",  R.drawable.img_geo));
+        listSubject.add(new Subject(1, "Lịch sử", "Các câu hỏi về sự kiện lịch sử liên quan dến con người",  R.drawable.img_his));
         listSubject.add(new Subject(2, "Khoa học", "Các câu hỏi về những định luật, cấu trúc và vận hành của thế giới tự nhiên",  R.drawable.img_science));
-        listSubject.add(new Subject(3, "Toán học", "Các câu hỏi về tính toán",  R.drawable.art));
+        listSubject.add(new Subject(3, "Toán học", "Các câu hỏi về tính toán",  R.drawable.img_math1));
         listSubject.add(new Subject(4, "Hóa học","Các câu hỏi về các chất hóa học",R.drawable.img_chem));
 
         //truyen cho  adapter
@@ -112,6 +112,7 @@ public class Frame2 extends AppCompatActivity {
             BufferedReader br= new BufferedReader(new InputStreamReader(in));
             String dataScore;
             while ((dataScore = br.readLine()) != null) {
+                // phân chia kí tự score|"string"
                 String[] score = dataScore.split("\\|");
                 String title = String.valueOf(score[0]);
                 currentScore = String.valueOf(score[1]);
@@ -119,7 +120,6 @@ public class Frame2 extends AppCompatActivity {
                 Log.d("score",currentScore);
 
             }
-
         } catch (Exception e) {
             Log.d("error",String.valueOf(e) );
         }

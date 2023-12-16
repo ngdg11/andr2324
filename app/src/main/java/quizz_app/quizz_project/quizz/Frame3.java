@@ -41,23 +41,6 @@ public class Frame3 extends AppCompatActivity {
     private String subject;
     private Button submitButton;
 
-    //lưu điểm vào file
-    private void saveScoreTofile(String saveScore) {
-        try {
-            // lưu điểm vừa chơi vào file
-            FileOutputStream out = this.openFileOutput(fileScoreName, MODE_PRIVATE);
-            if(correctAnswersCount >= 0){
-                saveScore = String.format(("score|"+ saveScore +" pts"));
-            }
-            out.write(saveScore.getBytes());
-            out.close();
-            Log.d("score", saveScore);
-        } catch (Exception e) {
-            Log.d("error", String.valueOf(e));
-        }
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,7 +100,13 @@ public class Frame3 extends AppCompatActivity {
                         } else {
                             goToScoreScreen(); // Nếu hết câu hỏi, chuyển đến màn hình điểm frame 4
                         }
-                    } else {
+                    }
+                    else if (!checkAnswer()&&correctAnswersCount==0) {
+                        score =0;
+                        saveScoreTofile(String.valueOf(score));
+                        goToScoreScreen();
+                    }
+                    else {
                         goToScoreScreen(); // Nếu trả lời sai, chuyển đến màn hình điểm frame 4
                     }
                 }
@@ -241,18 +230,31 @@ public class Frame3 extends AppCompatActivity {
             score += 1;
             Log.d("testScore",String.valueOf(score));
 
-        }else{
+        }else {
             score = 0;
         }
         saveScoreTofile(String.valueOf(score));
 
     }
 
-
-
     // Cập nhật số câu trả lời đúng
     private void updateCorrectAnswersCount() {
         correctAnswersCount++;
+    }
+    //lưu điểm vào file
+    private void saveScoreTofile(String saveScore) {
+        try {
+            // lưu điểm vừa chơi vào file
+            FileOutputStream out = this.openFileOutput(fileScoreName, MODE_PRIVATE);
+            if(correctAnswersCount >= 0){
+                saveScore = String.format(("score|"+ saveScore +" pts"));
+            }
+            out.write(saveScore.getBytes());
+            out.close();
+            Log.d("score", saveScore);
+        } catch (Exception e) {
+            Log.d("error", String.valueOf(e));
+        }
     }
 
     // Chuyển đến màn hình điểm frame 4
