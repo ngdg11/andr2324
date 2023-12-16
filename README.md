@@ -25,7 +25,16 @@ GoQuiz là ứng dụng Android được viết bằng Java, giúp người dùn
 ## **Hình Ảnh Ứng dụng**
 
 ### Màn hình dọc:
-![p1](screenshots_goquiz/p1.png) ![p2](screenshots_goquiz/p2.png) ![p3](screenshots_goquiz/p3.png) ![p4](screenshots_goquiz/p4.png) ![p5](screenshots_goquiz/p5.png) ![p6](screenshots_goquiz/p6.png)
+<table>
+  <tr>
+    <td><img src="screenshots_goquiz/p1.png" alt="p1"></td>
+    <td><img src="screenshots_goquiz/p2.png" alt="p2"></td>
+    <td><img src="screenshots_goquiz/p3.png" alt="p3"></td>
+    <td><img src="screenshots_goquiz/p4.png" alt="p4"></td>
+    <td><img src="screenshots_goquiz/p5.png" alt="p5"></td>
+    <td><img src="screenshots_goquiz/p6.png" alt="p6"></td>
+  </tr>
+</table>
 
 ### Màn hình ngang:
 ![l2](screenshots_goquiz/l2.png) ![l3](screenshots_goquiz/l3.png) ![l6](screenshots_goquiz/l6.png)
