@@ -1,5 +1,6 @@
 # **Giới thiệu Ứng dụng**
 GoQuiz là ứng dụng Android được viết bằng Java, giúp người dùng giải trí qua các câu hỏi chủ đề như Địa lý, Khoa học, Lịch sử, Toán. Ứng dụng có hai chế độ chơi: Dễ và Khó, cho phép người chơi lựa chọn mức độ. Điểm số được tính dựa trên độ khó của chế độ – một điểm cho chế độ Dễ và hai điểm cho chế độ Khó. Điểm của người chơi được theo dõi và lưu lại. Ngoài ra, danh sách đầy đủ các câu hỏi, câu trả lời và đáp án đúng được cung cấp để xem lại vào cuối mỗi phiên chơi.
+
 ## **Phân công thành viên trong nhóm**
 
 ### **Nguyễn Ngọc Dũng (Trưởng Nhóm)**
@@ -20,3 +21,11 @@ GoQuiz là ứng dụng Android được viết bằng Java, giúp người dùn
 - Lập trình các nút hoàn thành, chơi lại, và chia sẻ kết quả sang các ứng dụng khác.
 - Tính và hiển thị tổng điểm cho lần chơi gần nhất trên frame 2.
 - Tổng hợp và sắp xếp cơ sở dữ liệu câu hỏi.
+
+## **Hình Ảnh Ứng dụng**
+
+### Màn hình dọc:
+![p1](screenshots_goquiz/p1.png) ![p2](screenshots_goquiz/p2.png) ![p3](screenshots_goquiz/p3.png) ![p4](screenshots_goquiz/p4.png) ![p5](screenshots_goquiz/p5.png) ![p6](screenshots_goquiz/p6.png)
+
+### Màn hình ngang:
+![l2](screenshots_goquiz/l2.png) ![l3](screenshots_goquiz/l3.png) ![l6](screenshots_goquiz/l6.png)
