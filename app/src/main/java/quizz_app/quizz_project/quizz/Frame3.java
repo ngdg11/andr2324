@@ -45,6 +45,7 @@ public class Frame3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.frame3);
+        Log.d("QuizApp", "Khởi tạo Frame3");
 
         // Lấy thông tin môn học và level từ Intent trước đó
         if (savedInstanceState != null) {
@@ -73,7 +74,7 @@ public class Frame3 extends AppCompatActivity {
         submitButton = findViewById(R.id.submitButton);
         submitButton.setEnabled(false); // gray out
 
-        // nếu bấm vào đáp án thì hiện nút trả lời
+        // nếu bấm vào đáp án thì mới hiện nút trả lời
         RadioGroup answersGroup = findViewById(R.id.answersGroup);
         answersGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -116,15 +117,16 @@ public class Frame3 extends AppCompatActivity {
 
     // Hiển thị câu hỏi lên giao diện
     private void displayQuestion() {
+        Log.d("QuizApp", "Bắt đầu hiển thị câu hỏi. Index hiện tại: " + currentQuestionIndex);
         if (currentQuestionIndex < questions.size()) {
             Question currentQuestion = questions.get(currentQuestionIndex);
+            Log.d("QuizApp", "Câu hỏi lấy từ danh sách: " + currentQuestion.getQuestionText());
             TextView questionTextView = findViewById(R.id.questionTextView);
             RadioButton answer1 = findViewById(R.id.answer1);
             RadioButton answer2 = findViewById(R.id.answer2);
             RadioButton answer3 = findViewById(R.id.answer3);
             RadioButton answer4 = findViewById(R.id.answer4);
 
-            Log.d("QuizApp", "Câu hỏi hiện tại: " + currentQuestion.getQuestionText());
 
             // Hiển thị câu hỏi và các câu trả lời
             questionTextView.setText(currentQuestion.getQuestionText());
@@ -147,6 +149,7 @@ public class Frame3 extends AppCompatActivity {
         List<Question> loadedQuestions = new ArrayList<>();
         String fileName = getFileNameForSubject(subject);
 
+        Log.d("QuizApp", "Tải câu hỏi, Môn học: " + subject + ", Cấp độ: " + level);
         Log.d("QuizApp", "Đang tải câu hỏi từ tệp: " + fileName);
 
         try {
@@ -158,11 +161,22 @@ public class Frame3 extends AppCompatActivity {
 
             // Đọc từng dòng trong tệp văn bản để tải câu hỏi
             while ((line = reader.readLine()) != null) {
+                Log.d("QuizApp", "Đọc dòng: " + line);
+
                 // Phân tách dòng thành các phần, phân chia bằng ký tự "|"
                 String[] parts = line.split("\\|");
 
+                // log các phần vừa tách trên 1 dòng
+                for (int i = 0; i < parts.length; i++) {
+                    Log.d("QuizApp", "part " + i + ": " + parts[i]);
+                }
+
                 // Phân tách phần câu trả lời thành mảng, phân chia bằng ký tự "$"
                 String[] answers = parts[1].split("\\$");
+                // log từng đáp án
+                for (int i = 0; i < answers.length; i++) {
+                    Log.d("QuizApp", "Đáp án " + i + ": " + answers[i]);
+                }
 
                 // Chuyển đổi phần correct cho câu trả lời đúng thành kiểu số nguyên
                 int correctAnswer = Integer.parseInt(parts[2]);
@@ -174,6 +188,7 @@ public class Frame3 extends AppCompatActivity {
                 if (level.equalsIgnoreCase(questionLevel)) {
                     // Nếu phù hợp, thêm câu hỏi vào danh sách
                     loadedQuestions.add(new Question(parts[0], answers, correctAnswer));
+                    Log.d("QuizApp", "Câu hỏi được thêm: " + parts[0]);
                 }
             }
 
@@ -182,6 +197,7 @@ public class Frame3 extends AppCompatActivity {
             e.printStackTrace();
             Log.e("QuizApp", "Không tải được tệp.");
         }
+        Log.d("QuizApp", "Số lượng câu hỏi tải được: " + loadedQuestions.size());
         return loadedQuestions;
     }
 
@@ -213,20 +229,36 @@ public class Frame3 extends AppCompatActivity {
 
     // Kiểm tra câu trả lời
     private boolean checkAnswer() {
+        Log.d("QuizApp", "Kiểm tra câu trả lời cho câu hỏi số: " + currentQuestionIndex);
+
         RadioGroup answersGroup = findViewById(R.id.answersGroup);
         int selectedId = answersGroup.getCheckedRadioButtonId();
+
         RadioButton selectedRadioButton = findViewById(selectedId);
+
+        // lấy index của đáp án vừa chọn
         int answerIndex = answersGroup.indexOfChild(selectedRadioButton);
-        return questions.get(currentQuestionIndex).getCorrectAnswerIndex() == answerIndex;
+
+        Log.d("QuizApp", "Index đáp án được chọn: " + answerIndex);
+
+        // lấy index của câu trả lời đúng
+        int correctAnswerIndex = questions.get(currentQuestionIndex).getCorrectAnswerIndex();
+
+        // so sánh đáp án vừa chọn với correctanswerindex
+        boolean isCorrect = (correctAnswerIndex == answerIndex);
+        Log.d("QuizApp", "Return đáp án: " + isCorrect);
+
+        return isCorrect;
     }
 
-    // Cập nhật điểm
+
+    // Cập nhật điểm cho frame 2
     private void updateScore() {
-        if ("hard".equalsIgnoreCase(level)) {
+        if (level.equals("hard") || level.equals("HARD")) {
             score += 2;
             Log.d("testScore",String.valueOf(score));
 
-        } else if("easy".equalsIgnoreCase(level)) {
+        } else if(level.equals("easy") || level.equals("EASY")) {
             score += 1;
             Log.d("testScore",String.valueOf(score));
 
@@ -240,11 +272,12 @@ public class Frame3 extends AppCompatActivity {
     // Cập nhật số câu trả lời đúng
     private void updateCorrectAnswersCount() {
         correctAnswersCount++;
+        Log.d("QuizApp", "Số câu trả lời đúng hiện tại " + correctAnswersCount);
     }
     //lưu điểm vào file
     private void saveScoreTofile(String saveScore) {
         try {
-            // lưu điểm vừa chơi vào file
+            // lưu điểm vừa chơi vào file để hiển thị ở frame 2 (internal storage)
             FileOutputStream out = this.openFileOutput(fileScoreName, MODE_PRIVATE);
             if(correctAnswersCount >= 0){
                 saveScore = String.format(("score|"+ saveScore +" pts"));
@@ -269,7 +302,7 @@ public class Frame3 extends AppCompatActivity {
 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        // Restore the state of the Submit Button and set it accordingly
+        // restore state của submit button
         if (submitButton != null) {
             boolean isSubmitButtonEnabled = savedInstanceState.getBoolean("SUBMIT_BUTTON_ENABLED");
             submitButton.setEnabled(isSubmitButtonEnabled);

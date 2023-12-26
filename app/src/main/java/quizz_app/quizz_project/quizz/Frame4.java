@@ -18,8 +18,11 @@ public class Frame4 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.frame4);
+        Log.d("QuizApp", "Khởi tạo Frame4");
+
         Intent pass_number_of_corrected_answers = getIntent();
         int correctAnswersCount = pass_number_of_corrected_answers.getIntExtra("CORRECT_ANSWERS_COUNT", 0);
+        Log.d("QuizApp", "Frame4 - Số câu trả lời đúng: " + correctAnswersCount);
 
         TextView correctAnswersTextView = findViewById(R.id.correctAnswersTextView);
         correctAnswersTextView.setText(String.valueOf(correctAnswersCount) );
@@ -31,13 +34,15 @@ public class Frame4 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent_finish = new Intent(Frame4.this, MainActivity.class);
                 startActivity(intent_finish);
+                Log.d("QuizApp", "Nút hoàn thành được nhấn, quay trở lại MainActivity");
             }
         });
 
-        //pass lại sang frame 3
+        //pass lại sang frame 3 để chơi lại
         Intent pass_subject_level = getIntent();
         selectedSubject = pass_subject_level.getStringExtra("SELECTED_SUBJECT");
         selectedLevel = pass_subject_level.getStringExtra("SELECTED_LEVEL");
+
         //Button playAgain
         Button playAgainBtn = findViewById(R.id.btnAgain);
         playAgainBtn.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +53,7 @@ public class Frame4 extends AppCompatActivity {
                 playAgainIntent.putExtra("SELECTED_LEVEL", selectedLevel);
                 startActivity(playAgainIntent);
                 finish();
+                Log.d("QuizApp", "Nút Chơi lại được nhấn, quay trở lại Frame3");
             }
         });
 
@@ -62,7 +68,7 @@ public class Frame4 extends AppCompatActivity {
                     intent_share.putExtra(Intent.EXTRA_TEXT,"My score is"+ correctAnswersTextView.getText());
                     intent_share.setType("text/plain");
                     startActivity(intent_share);
-                    Log.e("QuizApp", "Ko share duoc");
+                    Log.d("QuizApp", "Frame4 - Nút Chia sẻ được nhấn");
                 }
             }
         });
