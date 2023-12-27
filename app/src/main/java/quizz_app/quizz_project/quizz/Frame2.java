@@ -24,13 +24,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Frame2 extends AppCompatActivity {
-    ArrayList<Subject> listSubject;
-
-    private String selectedSubject; // Add this line to store the selected subject
-    private String level = "EASY"; // Default level to "EASY
-    private String fileScoreName = "score.txt";
-    String currentScore;
-
+    ArrayList<Subject> listSubject; // mảng cho 5 subject
+    private String level = "EASY"; // level default là easy
+    private String fileScoreName = "score.txt"; // file lưu tổng điểm frame 2 (internal)
+    private String selectedSubject; // subject đc chọn
+    String currentScore; // biến lưu điểm lần chơi gần nhất
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
