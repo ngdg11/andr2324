@@ -7,10 +7,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Question TextView -->
-
-    <!-- RadioGroup for Answers -->
-
     <!-- Submit Button -->
     <TextView
         android:id="@+id/questionTextView"
@@ -19,9 +15,10 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:text="Question"
-        android:textSize="17dp"
+        android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"/>
 
     <RadioGroup
         android:id="@+id/answersGroup"
